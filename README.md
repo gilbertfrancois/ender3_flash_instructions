@@ -169,7 +169,7 @@ If the fuses read: `L: D6, H: DC: E: FD`, then all is fine. If not, set the fuse
 └────╼ avrdude -c buspirate -P /dev/tty.usbserial-AB0JPMQQ -p m1284p -U lfuse:w:0xd6:m -U hfuse:w:0xdc:m -U efuse:w:0xfd:m
 ```
 
-![fuses_cn](/Users/gilbert/Development/git/ender3bltouch/images/fuses_cn.png)
+![fuses_cn](./images/fuses_cn.png)
 
 Figure 1: Values for the fuses: LOW: **D6**, HIGH: **DC**: EXTENDED: **FD**. Screenshot from the Creality Ender 3 manual.
 
