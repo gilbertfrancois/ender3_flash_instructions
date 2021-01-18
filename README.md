@@ -20,7 +20,7 @@ In this article, I write about my experience on how to install the [BLTouch auto
 
 Installing the hardware is quite straight forward, if you bought the [upgrade package](https://www.creality3dofficial.com/collections/bl-touch/products/creality-bl-touch). Follow the instructions on [this video.](https://www.youtube.com/watch?v=jqxlQkkt8cM) The fun part comes after installing the hardware.
 
-[![Creality BL Touch Auto Bed Leveling Sensor Installation Tutorial](https://www.youtube.com/embed/jqxlQkkt8cM/0.jpg)](https://www.youtube.com/embed/jqxlQkkt8cM)
+[![Creality BL Touch Auto Bed Leveling Sensor Installation Tutorial](./images/video_preview_1.jpg)](https://www.youtube.com/watch?v=jqxlQkkt8cM)
 
 ## Download the firmware
 
