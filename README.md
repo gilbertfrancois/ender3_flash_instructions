@@ -4,11 +4,18 @@
 
 Gilbert François
 
-
-
-[TOC]
-
-
+- [Upgrading and flashing Ender 3 firmware with a Bus Pirate](#upgrading-and-flashing-ender-3-firmware-with-a-bus-pirate)
+  * [Abstract](#abstract)
+  * [Install the hardware](#install-the-hardware)
+  * [Download the firmware](#download-the-firmware)
+  * [Flash firmware with macOS or Linux](#flash-firmware-with-macos-or-linux)
+    + [AVR programmer](#avr-programmer)
+    + [Connecting the Bus Pirate to the printer's mainboard](#connecting-the-bus-pirate-to-the-printer-s-mainboard)
+    + [Check connection and check/set fuses](#check-connection-and-check-set-fuses)
+    + [Flash the firmware](#flash-the-firmware)
+  * [Remove capacitor for Z-stop (optional)](#remove-capacitor-for-z-stop--optional-)
+  * [Troubleshooting](#troubleshooting)
+  * [Reference](#reference)
 
 ## Abstract
 
@@ -16,11 +23,13 @@ In this article, I write about my experience on how to install the [BLTouch auto
 
 
 
-## Installing the hardware
+## Install the hardware
 
 Installing the hardware is quite straight forward, if you bought the [upgrade package](https://www.creality3dofficial.com/collections/bl-touch/products/creality-bl-touch). Follow the instructions on [this video.](https://www.youtube.com/watch?v=jqxlQkkt8cM) The fun part comes after installing the hardware.
 
 [![Creality BL Touch Auto Bed Leveling Sensor Installation Tutorial](./images/video_preview_1.jpg)](https://www.youtube.com/watch?v=jqxlQkkt8cM)
+
+
 
 ## Download the firmware
 
@@ -67,7 +76,7 @@ I used a Bus Pirate V3.6 for AVR programming. Make sure you choose your ISP with
 | MISO             | MISO       | 1           |
 | SCLK/CLK         | SCK        | 3           |
 
-Table 1: Bus Pirate AVR programming connections
+*Table 1: Bus Pirate AVR programming connections*
 
 Connect the Bus Pirate to the printer's main board according to table 1. 
 
@@ -162,7 +171,7 @@ $ avrdude -c buspirate -P /dev/tty.usbserial-AB0JPMQQ -p m1284p -U lfuse:w:0xd6:
 
 ![fuses_cn](./images/fuses_cn.png)
 
-Figure 1: Values for the fuses: LOW: **D6**, HIGH: **DC**: EXTENDED: **FD**. Screenshot from the Creality Ender 3 manual.
+*Figure 1: Values for the fuses: LOW: **D6**, HIGH: **DC**: EXTENDED: **FD**. Screenshot from the Creality Ender 3 manual.*
 
 
 
@@ -267,10 +276,13 @@ Todo....
 
 ## Troubleshooting
 
-If the connection cannot be established:
+​	*The connection cannot be established.*
 
-- Check if the wires are connected correctly
-- Try switching on power of the printer. It might be that the computer via the Bus Pirate is not delivering enough power to the mainboard of the printer.
+Try switching on power of the printer. It might be that the computer via the Bus Pirate is not delivering enough power to the mainboard of the printer.
+
+​	*If the print head does not respond when probe pin is pushed in.*
+
+Remove the capacitor near the Z-Stop plug on the mainboard, as described in section [Remove capacitor for Z-stop (optional)](Remove capacitor for Z-stop (optional))
 
 
 
@@ -290,3 +302,4 @@ If the connection cannot be established:
 
 [7] [AVR Tutorial](https://www.ladyada.net/learn/avr/avrdude.html)
 
+[comment]: # (https://ecotrust-canada.github.io/markdown-toc/)
