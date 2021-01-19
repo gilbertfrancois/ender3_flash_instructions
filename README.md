@@ -1,12 +1,12 @@
 
 
-# Upgrading and flashing Ender 3 firmware with a Bus Pirate
+# Flashing a Creality Ender 3 firmware with the Bus Pirate
 
 Gilbert François
 
-- [Upgrading and flashing Ender 3 firmware with a Bus Pirate](#upgrading-and-flashing-ender-3-firmware-with-a-bus-pirate)
+- [Flashing a Creality Ender 3 firmware with the Bus Pirate](#flashing-a-creality-ender-3-firmware-with-the-bus-pirate)
   * [Abstract](#abstract)
-  * [Install the hardware](#install-the-hardware)
+  * [Install the BLTouch on the Ender 3](#Install the BLTouch on the Ender 3)
   * [Download the firmware](#download-the-firmware)
   * [Flash firmware with macOS or Linux](#flash-firmware-with-macos-or-linux)
     + [AVR programmer](#avr-programmer)
@@ -21,9 +21,17 @@ Gilbert François
 
 In this article, I write about my experience on how to install the [BLTouch auto bed leveling sensor for CR/Ender series](https://www.creality3dofficial.com/collections/bl-touch/products/creality-bl-touch) and how to flash the official precompiled firmware of the Ender 3 with macOS or Linux. Unfortunately Creality only describes how to flash the firmware with Windows and delivers software for Windows only. 
 
+The article also shows one of the many capabilities of the Bus Pirate, which is a wonderful tool, that every hardware hacker should have, in my opinion. Here is what others say about it:
+
+*"The Bus Pirate is an open source hacker multi-tool that talks to electronic stuff. It's got [a bunch of features](http://dangerousprototypes.com/docs/Features_overview) an intrepid hacker might need to prototype their next project."* - Dangerous Prototypes
+
+*"The Bus Pirate v3.6a, created by [Ian Lesnet](http://dangerousprototypes.com/), is a troubleshooting tool that communicates between a computer and any embedded device over 1-wire, 2-wire, 3-wire, UART, I2C, SPI, and HD44780 LCD protocols - all at voltages from 0-5.5VDC. This product eliminates a ton of early prototyping effort when working with new or unknown chips."* - Sparkfun 
+
+In this article, we will use it as an AVR programmer.
 
 
-## Install the hardware
+
+## Install the BLTouch on the Ender 3
 
 Installing the hardware is quite straight forward, if you bought the [upgrade package](https://www.creality3dofficial.com/collections/bl-touch/products/creality-bl-touch). Follow the instructions on [this video.](https://www.youtube.com/watch?v=jqxlQkkt8cM) The fun part comes after installing the hardware.
 
@@ -296,10 +304,12 @@ Remove the capacitor near the Z-Stop plug on the mainboard, as described in sect
 
 [4] [YouTube: Creality BLtouch Ender 3 upgrade kit - Step by step guide with fixes](https://www.youtube.com/watch?v=Hi7uPYJ_q-U)
 
-[5] [Bus Pirate AVR Programming](http://dangerousprototypes.com/docs/Bus_Pirate_AVR_Programming)
+[5] [Bus Pirate](http://dangerousprototypes.com/docs/Bus_Pirate)
 
-[6] [Wikipedia: In System Programming (ISP)](https://en.wikipedia.org/wiki/In-system_programming)
+[6] [Bus Pirate AVR Programming](http://dangerousprototypes.com/docs/Bus_Pirate_AVR_Programming)
 
-[7] [AVR Tutorial](https://www.ladyada.net/learn/avr/avrdude.html)
+[7] [Wikipedia: In System Programming (ISP)](https://en.wikipedia.org/wiki/In-system_programming)
 
-[comment]: # (https://ecotrust-canada.github.io/markdown-toc/)
+[8] [AVR Tutorial](https://www.ladyada.net/learn/avr/avrdude.html)
+
+[comment]: # "https://ecotrust-canada.github.io/markdown-toc/"
