@@ -1,12 +1,10 @@
-
-
 # Flashing a Creality Ender 3 firmware with the Bus Pirate
 
 Gilbert François
 
 - [Flashing a Creality Ender 3 firmware with the Bus Pirate](#flashing-a-creality-ender-3-firmware-with-the-bus-pirate)
   * [Abstract](#abstract)
-  * [Install the BLTouch on the Ender 3](#Install the BLTouch on the Ender 3)
+  * [Install the BLTouch on the Ender 3](#install-the-bltouch-on-the-ender-3)
   * [Download the firmware](#download-the-firmware)
   * [Flash firmware with macOS or Linux](#flash-firmware-with-macos-or-linux)
     + [AVR programmer](#avr-programmer)
