@@ -1,6 +1,6 @@
 
 
-# Upgrading and flashing Ender 3 firmware
+# Upgrading and flashing Ender 3 firmware with a Bus Pirate
 
 Gilbert François
 
@@ -27,7 +27,7 @@ Installing the hardware is quite straight forward, if you bought the [upgrade pa
 Go to [https://www.creality.com/download](https://www.creality.com/download) and look for `Ender-3_8bit_1.1.6V_BL Touch Firmware_0814.rar`. Download this file and unpack with:
 
 ```bash
-unrar -e Ender-3_8bit_1.1.6V_BL Touch Firmware_0814.rar
+$ unrar -e Ender-3_8bit_1.1.6V_BL Touch Firmware_0814.rar
 ```
 
 Note: You can install unrar with `brew` on macOS or `apt install` on Linux, in case you don't have it yet. After unpacking, the firmware file we need is called:
@@ -52,7 +52,7 @@ You’ll need one of the following to actually perform the ISP (In System Progra
 
 The ISP programmer (USB ISP v2) that was included in the package, did not work on my computer with avrdude. In [this video](https://www.youtube.com/watch?v=Hi7uPYJ_q-U), the author tells that it is because it is a clone programmer and incompatible with avrdude. 
 
-I used a Bus Pirate V3.6 for AVR programming. Make sure you choose your ISP with the `avrdude -c` option. All avrdude options can be found in [2].
+I used a Bus Pirate V3.6 for AVR programming. Make sure you choose your ISP with the `avrdude -c` option if you use another programmer. All avrdude options can be found in [2].
 
 
 
@@ -73,29 +73,23 @@ Connect the Bus Pirate to the printer's main board according to table 1.
 
 
 
-### Check connection
+### Check connection and check/set fuses
 
-First, test the connection with:
+Connect the Bus Pirate and find its port by typing:
 
-```bash
-avrdude -c <your programmer> -p m1284p -v
-```
+````bash
+$ ls /dev/tty*
+/dev/tty
+/dev/tty.Bluetooth-Incoming-Port
+/dev/tty.usbserial-AB0JPMQQ
+/dev/ttyp0
+...
+````
 
-or if your programmer is linked via a usb serial interface: 
-
-```bash
-avrdude -c <your programmer> -P <tty port> -p m1284p -v
-```
-
-
-
-### Check and set fuses
-
-If the connection works, the Bus Pirate is able to read out the properties and fuses of the micro controller:
+On my computer, it is `/dev/tty.usbserial-AB0JPMQQ`. First, test the connection with verbose `-v` option. If the connection works, the Bus Pirate is able to read out the properties and fuses of the micro controller:
 
 ```bash
-┌─╼[~/Development/git/ender3bltouch]
-└────╼ avrdude -c buspirate -P /dev/tty.usbserial-AB0JPMQQ -p m1284p -v
+$ avrdude -c buspirate -P /dev/tty.usbserial-AB0JPMQQ -p m1284p -v
 
 avrdude: Version 6.3, compiled on Oct 11 2019 at 01:39:52
          Copyright (c) 2000-2005 Brian Dean, http://www.bdmicro.com/
@@ -163,8 +157,7 @@ avrdude done.  Thank you.
 If the fuses read: `L: D6, H: DC: E: FD`, then all is fine. If not, set the fuses with avrdude:
 
 ```bash
-┌─╼[~/Development/git/ender3bltouch]
-└────╼ avrdude -c buspirate -P /dev/tty.usbserial-AB0JPMQQ -p m1284p -U lfuse:w:0xd6:m -U hfuse:w:0xdc:m -U efuse:w:0xfd:m
+$ avrdude -c buspirate -P /dev/tty.usbserial-AB0JPMQQ -p m1284p -U lfuse:w:0xd6:m -U hfuse:w:0xdc:m -U efuse:w:0xfd:m
 ```
 
 ![fuses_cn](./images/fuses_cn.png)
@@ -177,9 +170,8 @@ Figure 1: Values for the fuses: LOW: **D6**, HIGH: **DC**: EXTENDED: **FD**. Scr
 
 Now, let's flash the firmware using the command below:
 
-```
-┌─╼[~/Development/git/ender3bltouch]
-└────╼ avrdude -c buspirate -P /dev/tty.usbserial-AB0JPMQQ -p m1284p -v -U flash:w:Ender-3Marlin1.1.6BLTouch.hex
+```bash
+$ avrdude -c buspirate -P /dev/tty.usbserial-AB0JPMQQ -p m1284p -v -U flash:w:Ender-3Marlin1.1.6BLTouch.hex
 
 avrdude: Version 6.3, compiled on Oct 11 2019 at 01:39:52
          Copyright (c) 2000-2005 Brian Dean, http://www.bdmicro.com/
@@ -270,6 +262,15 @@ avrdude done.  Thank you.
 ## Remove capacitor for Z-stop (optional)
 
 Todo....
+
+
+
+## Troubleshooting
+
+If the connection cannot be established:
+
+- Check if the wires are connected correctly
+- Try switching on power of the printer. It might be that the computer via the Bus Pirate is not delivering enough power to the mainboard of the printer.
 
 
 
