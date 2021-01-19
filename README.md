@@ -288,7 +288,7 @@ Try switching on power of the printer. It might be that the computer via the Bus
 
 ​	*If the print head does not respond when probe pin is pushed in.*
 
-Remove the capacitor near the Z-Stop plug on the mainboard, as described in section [Remove capacitor for Z-stop (optional)](Remove capacitor for Z-stop (optional))
+Remove the capacitor near the Z-Stop plug on the mainboard, as described in section [Remove capacitor for Z-stop (optional)](#remove-capacitor-for-z-stop--optional-)
 
 
 
