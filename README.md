@@ -37,7 +37,7 @@ Installing the hardware is quite straight forward, if you bought the [upgrade pa
 
 
 
-## Download the firmware
+## Option 1: Download the original firmware
 
 Go to [https://www.creality.com/download](https://www.creality.com/download) and look for `Ender-3_8bit_1.1.6V_BL Touch Firmware_0814.rar`. Download this file and unpack with:
 
@@ -50,6 +50,34 @@ Note: You can install unrar with `brew` on macOS or `apt install` on Linux, in c
 ```
 Ender-3Marlin1.1.6BLTouch.hex
 ```
+
+
+
+## Option 2: Modify and compile Marlin v1.1.x with BLTouch support
+
+References [9] and [10] give a good explanation on how to compile Marlin 1.1.9 for the Ender 3. This repository contains the original, without BLTouch support, and modified `Configure.h` and `Configure_adv.h` files, where BLTouch is enabled. 
+
+```
+├── example_configurations_1.1.9.1
+│   └── Creality
+│       ├── Ender-3
+│       │   ├── Configuration.h
+│       │   ├── Configuration_adv.h
+│       │   ├── README.md
+│       │   ├── _Bootscreen.h
+│       │   └── _Statusscreen.h
+│       └── Ender-3-BLTouch
+│           ├── Configuration.h
+│           ├── Configuration_adv.h
+│           ├── README.md
+│           ├── _Bootscreen.h
+│           └── _Statusscreen.h
+
+```
+
+Folder `example_configurations_1.1.9.1/Creality/Ender-3` contains the original configuration.
+
+Folder ``example_configurations_1.1.9.1/Creality/Ender-3-BLTouch` contains the BLTouch enabled configuration files. Copy these files into the `Marlin` folder of the marlin source files and compile. Then, in the Arduino IDE, select in the menu `sketch -> export compiled binary` and flash this firmware with `avrdude`, described in the next section.
 
 
 
@@ -67,7 +95,7 @@ You’ll need one of the following to actually perform the ISP (In System Progra
 
 The ISP programmer (USB ISP v2) that was included in the package, did not work on my computer with avrdude. In [this video](https://www.youtube.com/watch?v=Hi7uPYJ_q-U), the author tells that it is because it is a clone programmer and incompatible with avrdude. 
 
-I used a Bus Pirate V3.6 for AVR programming. Make sure you choose your ISP with the `avrdude -c` option if you use another programmer. All avrdude options can be found in [2].
+I used a [Bus Pirate V3.6](http://dangerousprototypes.com/docs/Bus_Pirate) for AVR programming. Make sure you choose your ISP with the `avrdude -c` option if you use another programmer. All avrdude options can be found in [2]. I choose not to install a boot loader, to have more space for the firmware and being able to add more features 
 
 
 
@@ -274,9 +302,9 @@ avrdude done.  Thank you.
 
 
 
-## Remove capacitor for Z-stop (optional)
+## Remove capacitor for z-stop
 
-Todo....
+The BLTouch v3 is incompatible with the Creality v1.1.3 board, due to a too large capacitor linked at the z-stop switch. Best is to remove this capacitor C7 from the mainboard.
 
 
 
@@ -310,4 +338,9 @@ Remove the capacitor near the Z-Stop plug on the mainboard, as described in sect
 
 [8] [AVR Tutorial](https://www.ladyada.net/learn/avr/avrdude.html)
 
+[9] [Ender 3 vanilla Marlin update: Concise guide](https://www.youtube.com/watch?v=N7JLchsFRDU)
+
+[10] [Ender 3 BLtouch vanilla Marlin guide](https://www.youtube.com/watch?v=sUlqrSq6LeY)
+
 [comment]: # "https://ecotrust-canada.github.io/markdown-toc/"
+
