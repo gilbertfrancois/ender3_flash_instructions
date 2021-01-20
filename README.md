@@ -18,15 +18,13 @@ Gilbert François
 
 ## Abstract
 
-In this article, I write about my experience on how to install the [BLTouch auto bed leveling sensor for CR/Ender series](https://www.creality3dofficial.com/collections/bl-touch/products/creality-bl-touch) and how to flash the official precompiled firmware of the Ender 3 with macOS or Linux. Unfortunately Creality only describes how to flash the firmware with Windows and delivers software for Windows only. 
+In this article, I write about my experience on how to install the [BLTouch auto bed leveling sensor for CR/Ender series](https://www.creality3dofficial.com/collections/bl-touch/products/creality-bl-touch) and how to flash the official precompiled firmware, or self compiled firmware of the Ender 3 with macOS or Linux. Unfortunately Creality only describes how to flash the firmware with Windows and delivers software for Windows only. 
 
 The article also shows one of the many capabilities of the Bus Pirate, which is a wonderful tool, that every hardware hacker should have, in my opinion. Here is what others say about it:
 
 *"The Bus Pirate is an open source hacker multi-tool that talks to electronic stuff. It's got [a bunch of features](http://dangerousprototypes.com/docs/Features_overview) an intrepid hacker might need to prototype their next project."* - Dangerous Prototypes
 
 *"The Bus Pirate v3.6a, created by [Ian Lesnet](http://dangerousprototypes.com/), is a troubleshooting tool that communicates between a computer and any embedded device over 1-wire, 2-wire, 3-wire, UART, I2C, SPI, and HD44780 LCD protocols - all at voltages from 0-5.5VDC. This product eliminates a ton of early prototyping effort when working with new or unknown chips."* - Sparkfun 
-
-In this article, we will use it as an AVR programmer.
 
 
 
@@ -115,7 +113,10 @@ I used a [Bus Pirate V3.6](http://dangerousprototypes.com/docs/Bus_Pirate) for A
 
 Connect the Bus Pirate to the printer's main board according to table 1. 
 
-
+| |
+|---|
+|![IMG_0710](./images/IMG_0710.jpg)|
+|*Bus Pirate connected to the mainboard of the Ender 3*|
 
 ### Check connection and check/set fuses
 
@@ -203,10 +204,10 @@ If the fuses read: `L: D6, H: DC: E: FD`, then all is fine. If not, set the fuse
 ```bash
 $ avrdude -c buspirate -P /dev/tty.usbserial-AB0JPMQQ -p m1284p -U lfuse:w:0xd6:m -U hfuse:w:0xdc:m -U efuse:w:0xfd:m
 ```
-
-![fuses_cn](./images/fuses_cn.png)
-
-*Figure 1: Values for the fuses: LOW: **D6**, HIGH: **DC**: EXTENDED: **FD**. Screenshot from the Creality Ender 3 manual.*
+| |
+|---|
+|![fuses_cn](./images/fuses_cn.png)|
+|*Values for the fuses: LOW: **D6**, HIGH: **DC**: EXTENDED: **FD**. Screenshot from the Creality Ender 3 manual.*|
 
 
 
@@ -306,6 +307,11 @@ avrdude done.  Thank you.
 ## Remove capacitor for z-stop
 
 The BLTouch v3 is incompatible with the Creality v1.1.3 board, due to a too large capacitor linked at the z-stop switch. Best is to remove this capacitor C7 from the mainboard.
+
+|  | |
+|---|---|
+|![IMG_0713.jpg](images/IMG_0713.jpg)|![IMG_0714](images/IMG_0714.jpg)|
+|Removing capacitor C7| |
 
 
 
