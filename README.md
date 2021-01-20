@@ -306,7 +306,7 @@ avrdude done.  Thank you.
 
 ## Remove capacitor for z-stop
 
-The BLTouch v3 is incompatible with the Creality v1.1.3 board, due to a too large capacitor linked at the z-stop switch. Best is to remove this capacitor C7 from the mainboard.
+The BLTouch v3 is incompatible with the Creality v1.1.4 board, due to a too large capacitor linked at the z-stop switch. Best is to remove this capacitor C7 from the mainboard.
 
 |  | |
 |---|---|
@@ -317,11 +317,15 @@ The BLTouch v3 is incompatible with the Creality v1.1.3 board, due to a too larg
 
 ## Troubleshooting
 
+​	*The Bus Pirate is not recognised on my computer.*
+
+Install the Virtual Com Port (VCP) driver for the FTDI chip, found on the [manufacturer's website](https://ftdichip.com/drivers/vcp-drivers/).
+
 ​	*The connection cannot be established.*
 
-Try switching on power of the printer. It might be that the computer via the Bus Pirate is not delivering enough power to the mainboard of the printer.
+Unplug the display cable and/or switch on power of the printer. It might be that the computer via the Bus Pirate is not delivering enough power to the mainboard of the printer.
 
-​	*If the print head does not respond when probe pin is pushed in.*
+​	*If the servo of the z-axis does not stop when probe pin is pushed in.*
 
 Remove the capacitor near the Z-Stop plug on the mainboard, as described in section [Remove capacitor for Z-stop (optional)](#remove-capacitor-for-z-stop--optional-)
 
