@@ -18,19 +18,21 @@ Gilbert François
 
 ## Abstract
 
-In this article, I write about my experience on how to install the [BLTouch auto bed leveling sensor for CR/Ender series](https://www.creality3dofficial.com/collections/bl-touch/products/creality-bl-touch) and how to flash the official precompiled firmware, or self compiled firmware of the Ender 3 with macOS or Linux. Unfortunately Creality only describes how to flash the firmware with Windows and delivers software for Windows only. 
+In this article, I write about my experience on how to install the [BLTouch auto bed leveling sensor for CR/Ender series](https://www.creality3dofficial.com/collections/bl-touch/products/creality-bl-touch). To make the BLTouch work, the Ender 3 needs BLTouch enabled firmware, which you need to burn in the micro controller. There are 2 possible options: Use the official, precompiled firmware from Creality or configure and compile your own Marlin firmware. Unfortunately Creality only describes how to flash the precompiled firmware with Windows and delivers software for Windows only. This article describes how to do that for Linux and macOS.
 
-The article also shows one of the many capabilities of the Bus Pirate, which is a wonderful tool, that every hardware hacker should have, in my opinion. Here is what others say about it:
+For AVR programming, I use a Bus Pirate, which is a wonderful and versatile tool, that every hardware hacker should have, in my opinion. Here is what others say about it:
 
 *"The Bus Pirate is an open source hacker multi-tool that talks to electronic stuff. It's got [a bunch of features](http://dangerousprototypes.com/docs/Features_overview) an intrepid hacker might need to prototype their next project."* - Dangerous Prototypes
 
 *"The Bus Pirate v3.6a, created by [Ian Lesnet](http://dangerousprototypes.com/), is a troubleshooting tool that communicates between a computer and any embedded device over 1-wire, 2-wire, 3-wire, UART, I2C, SPI, and HD44780 LCD protocols - all at voltages from 0-5.5VDC. This product eliminates a ton of early prototyping effort when working with new or unknown chips."* - Sparkfun 
 
+But you can use any AVR programmer that you have laying around. I come back to that in the section [AVR programmer](#AVR-programmer).
+
 
 
 ## Install the BLTouch on the Ender 3
 
-Installing the hardware is quite straight forward, if you bought the [upgrade package](https://www.creality3dofficial.com/collections/bl-touch/products/creality-bl-touch). Follow the instructions on [this video.](https://www.youtube.com/watch?v=jqxlQkkt8cM) The fun part comes after installing the hardware.
+Installing the hardware is quite straight forward, if you bought the [upgrade package](https://www.creality3dofficial.com/collections/bl-touch/products/creality-bl-touch). Follow the instructions on the first part of [this video.](https://www.youtube.com/watch?v=jqxlQkkt8cM) The fun part comes after installing the hardware.
 
 [![Creality BL Touch Auto Bed Leveling Sensor Installation Tutorial](./images/video_preview_1.jpg)](https://www.youtube.com/watch?v=jqxlQkkt8cM)
 
@@ -208,6 +210,8 @@ $ avrdude -c buspirate -P /dev/tty.usbserial-AB0JPMQQ -p m1284p -U lfuse:w:0xd6:
 |---|
 |![fuses_cn](./images/fuses_cn.png)|
 |*Values for the fuses: LOW: **D6**, HIGH: **DC**: EXTENDED: **FD**. Screenshot from the Creality Ender 3 manual.*|
+
+If you want to change one or more specific settings of the fuses, you can go to [Engbedded Atmel AVR Fuse Calculator](https://www.engbedded.com/fusecalc/) and calculate the LO, HI and EXTEND hex values. Make sure that you know what you're doing. 
 
 
 
